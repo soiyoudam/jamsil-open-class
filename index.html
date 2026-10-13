@@ -333,7 +333,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-si
         <tr><th>구분</th><th>시간</th><th>비고</th></tr>
         <tr><td>1교시</td><td class="time">08:50 ~ 09:35</td><td>기술(11/10)</td></tr>
         <tr><td>2교시</td><td class="time">09:45 ~ 10:30</td><td>국어(10/14)</td></tr>
-        <tr><td>참관록 제출</td><td class="time">참관 후</td><td>구글 폼 (추후 안내)</td></tr>
+        <tr><td>참관록 제출</td><td class="time">참관 후</td><td>구글 폼</td></tr>
       </table></div>
     </div>
   </section>
@@ -377,7 +377,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-si
     </div>
     <div class="sec">
       <h3>참관록 제출</h3>
-      <p>참관 후 참관록을 구글 폼으로 제출해 주세요. 양식은 수업 전에 이곳에 연결됩니다.</p>
+      <p>참관 후 참관록을 구글 폼으로 제출해 주세요.</p>
       <div class="btns" id="reportBtns"></div>
     </div>
   </section>
@@ -508,7 +508,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-si
     <div class="sec">
       <h3>참관록 작성하기</h3>
       <div class="btns" id="reportPageBtns"></div>
-      <p class="muted small" style="margin-top:10px">양식은 수업 전에 이곳에 연결됩니다. 수업 당일 교실에서도 QR로 안내합니다.</p>
+      <p class="muted small" style="margin-top:10px">수업 당일 교실에서도 QR로 안내합니다.</p>
     </div>
   </section>
 
@@ -520,14 +520,14 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-si
 // ===== 링크 설정: 비어 있으면 '준비 중'으로 표시됩니다. =====
 var LINKS = {
   applyForm: "https://docs.google.com/forms/d/e/1FAIpQLSfSMEhTMUFM-_lJW1GMC0LNp70li1vlO-UrzScBWNs2xcZWqw/viewform",   // 구글 폼 참관 신청서
-  reportForm: ""                 // 참관록 구글 폼 (추후)
+  reportForm: "https://docs.google.com/forms/d/e/1FAIpQLSdCmoYEenw5NNfiZZZNNkED93lICTwwDXElHvNXtZxHCXHHJg/viewform"   // 참관록 구글 폼
 };
 // 참관 코드로 잠긴 자료. 주소는 base64로 적습니다(빈 문자열이면 '준비 중').
 // 코드 변경: 아래 GATE 값은 코드의 해시입니다. 바꾸려면 Claude에게 요청하세요.
 var LOCKED = {
   K: [["수업 소개 및 참관 안내", "aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xbzlyOFBkZ1FLeHNkenlNSXp1RE5fUko3LWd1UDZEcHhwN0NUT19DWkl0Zy92aWV3"],
       ["세부 지도안", ""],
-      ["참관 교사 화면 (반론 스파링)", ""]],
+      ["참관 교사 화면 (반론 스파링)", "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9hL21hY3Jvcy9qYW1zaWwuc2VuLm1zLmtyL3MvQUtmeWNieGk5TDd1bnZjN0xKRW9YcGdJaXBzYjRhaUF5ZWVNSEF2eFhmQTVsN3ZmVnJ4T2VkNm16Tl9ZeFhkRmwyMkRkR0VxTmcvZXhlYw=="]],
   T: [["수업 소개", ""],
       ["세부 지도안", ""],
       ["에너지 아일랜드 게임", ""]]
