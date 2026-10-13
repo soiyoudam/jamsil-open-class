@@ -474,7 +474,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-si
   <!-- 수업 자료 -->
   <section class="page" id="p-docs">
     <h2>수업 자료</h2>
-    <p class="lead">참관 교사용 자료입니다. 수업 시작 때 교실에서 안내하는 참관 코드(숫자 4자리)를 입력하면 열립니다.</p>
+    <p class="lead">참관 교사용 자료입니다. 수업 시작 때 교실에서 안내하는 참관 코드(숫자 4자리)를 입력하면 바로 열립니다.</p>
     <div class="sec">
       <h3>국어 「장소의 발견」</h3>
       <form class="gate card" id="gateK" data-key="K" autocomplete="off">
@@ -568,15 +568,25 @@ function unlock(key){
     LOCKED[key].forEach(function(i){var url="";try{url=i[1]?atob(i[1]):"";}catch(e){}box.appendChild(linkBtn(i[0],url,key==="T"?"t ghost":"ghost"));});
   }
   box.hidden=false; gate.classList.add("open");
+  // 자료가 하나뿐이면 코드 입력 직후 바로 이동
+  var live=LOCKED[key].filter(function(i){return i[1];});
+  if(live.length===1){var u="";try{u=atob(live[0][1]);}catch(e){} if(u){location.assign(u);}}
+}
+function lockAll(){
+  ["K","T"].forEach(function(key){
+    var box=document.getElementById("docs"+key), gate=document.getElementById("gate"+key);
+    if(!box||!gate) return;
+    box.hidden=true; gate.classList.remove("open");
+    var inp=gate.querySelector("input"), m=gate.querySelector(".gate-msg");
+    if(inp) inp.value=""; if(m) m.textContent="";
+  });
 }
 document.querySelectorAll(".gate").forEach(function(form){
   var key=form.getAttribute("data-key"), input=form.querySelector("input"), msg=form.querySelector(".gate-msg");
-  try{ if(sessionStorage.getItem("gate"+key)==="1") unlock(key); }catch(e){}
   form.addEventListener("submit",function(e){
     e.preventDefault();
     var v=(input.value||"").replace(/\D/g,"");
     if(v.length===4 && hashCode(v)===GATE[key]){
-      try{sessionStorage.setItem("gate"+key,"1");}catch(e){}
       msg.textContent=""; unlock(key);
     }else{
       msg.textContent="코드가 맞지 않습니다. 수업 시작 때 안내한 숫자 4자리를 입력해 주세요.";
@@ -594,6 +604,7 @@ function show(id){
   if(!titles.hasOwnProperty(id)) id="home";
   document.querySelectorAll(".page").forEach(function(p){p.classList.toggle("on",p.id==="p-"+id);});
   back.hidden=(id==="home");
+  if(id!=="docs") lockAll();
   topTitle.innerHTML = id==="home" ? homeTitle : titles[id]+"<small>잠실중 수업공개 참관 안내</small>";
   window.scrollTo(0,0);
 }
